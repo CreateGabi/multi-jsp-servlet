@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h3>회원 정보</h3>
+<form action="insert2.jsp" method="GET">
+ID : <input type="text" name="id"><br>
+비밀번호 : <input type="password" name="pwd"><br>
+이름 : <input type="text" name="name"><br>
+생년월일 : <input type="date" name="date"><br>
+휴대전화 : <input type="tel" name="tel"><br>
+이메일 : <input type="email" name="email"><br>
+성별 : 
+<select name="gender">
+	<option value="남자"> 남자
+	<option value="여자"> 여자
+</select> <br>
+관심사 :
+<input type="checkbox" name="hobby" value="카페"> 카페
+<input type="checkbox" name="hobby" value="메일"> 메일
+<input type="checkbox" name="hobby" value="뉴스"> 뉴스
+<input type="checkbox" name="hobby" value="쇼핑"> 쇼핑
+<input type="checkbox" name="hobby" value="서적"> 서적<br>
+하고싶은 말 :<br>
+<textarea rows="10" cols="5" name="introduction"></textarea><br>
+<input type="submit" value="전송">
+<input type="reset" value="지우기">
+</form>
+</body>
+</html>
