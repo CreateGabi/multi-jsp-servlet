@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script>
+	$(function() {
+		$('#b1').click(function() {
+			food = $('#food').val()
+			where = $('#where').val()
+			alert('당신이 먹고 싶은 음식은 ' + food + '이고, 가고 싶은 곳은 ' + where + "군요.")
+		})
+		
+		$('#b2').click(function() {
+			site = $('#site').val()
+			if (site == 'movie') {
+				location.href = "https://www.cgv.co.kr/"
+			} else {
+				location.href = "https://www.hanatour.com/"
+			}
+		})
+	})
+</script>
+</head>
+<body>
+먹고 싶은 음식 : <input id='food'> <br>
+가고 싶은 곳 : <input id='where'> <br>
+<button id='b1'>버튼1</button>
+<hr>
+현재 내가 제일 많이 들어가는 사이트 : <input id='site'> <br>
+<button id='b2'>버튼2</button>
+</body>
+</html>

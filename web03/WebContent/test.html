@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>test</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawSeriesChart);
+
+    function drawSeriesChart() {
+
+      var data = google.visualization.arrayToDataTable([
+        ['ID', 'Life Expectancy', 'Fertility Rate', 'Region',     'Population'],
+        ['CAN',    80.66,              1.67,      'North America',  33739900],
+        ['DEU',    79.84,              1.36,      'Europe',         81902307],
+        ['DNK',    78.6,               1.84,      'Europe',         5523095],
+        ['EGY',    72.73,              2.78,      'Middle East',    79716203],
+        ['GBR',    80.05,              2,         'Europe',         61801570],
+        ['IRN',    72.49,              1.7,       'Middle East',    73137148],
+        ['IRQ',    68.09,              4.77,      'Middle East',    31090763],
+        ['ISR',    81.55,              2.96,      'Middle East',    7485600],
+        ['RUS',    68.6,               1.54,      'Europe',         141850000],
+        ['USA',    78.09,              2.05,      'North America',  307007000]
+      ]);
+
+      var options = {
+        title: 'Fertility rate vs life expectancy in selected countries (2010).' +
+          ' X=Life Expectancy, Y=Fertility, Bubble size=Population, Bubble color=Region',
+        hAxis: {title: 'Life Expectancy'},
+        vAxis: {title: 'Fertility Rate'},
+        bubble: {textStyle: {fontSize: 11}}
+      };
+
+      var chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
+      chart.draw(data, options);
+    }
+    </script>
+</head>
+<body>
+<div id="series_chart_div" style="width: 900px; height: 500px;"></div>
+<div id="map" style="width:100%;height:350px;"></div>
+<p><em>지도를 클릭해주세요!</em></p> 
+<div id="clickLatlng"></div>
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7490efae95f2af7f8a448ae00906eee1"></script>
+<script>
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = { 
+        center: new kakao.maps.LatLng(35.1531696, 129.118666), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };
+
+var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+// 지도를 클릭한 위치에 표출할 마커입니다
+var marker = new kakao.maps.Marker({ 
+    // 지도 중심좌표에 마커를 생성합니다 
+    position: map.getCenter() 
+}); 
+// 지도에 마커를 표시합니다
+marker.setMap(map);
+
+// 지도에 클릭 이벤트를 등록합니다
+// 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
+kakao.maps.event.addListener(map, 'click', function(mouseEvent) {        
+    
+    // 클릭한 위도, 경도 정보를 가져옵니다 
+    var latlng = mouseEvent.latLng; 
+    
+    // 마커 위치를 클릭한 위치로 옮깁니다
+    marker.setPosition(latlng);
+    
+    var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
+    message += '경도는 ' + latlng.getLng() + ' 입니다';
+    
+    var resultDiv = document.getElementById('clickLatlng'); 
+    resultDiv.innerHTML = message;
+    
+});
+</script>
+<script type="text/javascript">
+	function site() {
+		location.href = "http://www.daum.net"
+	}
+</script>
+<button onclick="site()">다음 사이트로 이동하기</button>
+</body>
+</html>
