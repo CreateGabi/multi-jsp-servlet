@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
+</script>
+<script type="text/javascript">
+	$(function() {
+		$('#b1').click(function() {
+			wonValue = $('#won').val()
+			//원하는 곳에서 아무때나 페이지를 넘기지 않고, 서버와
+			//통신하고자 하는 경우 ajax(비동기통신)
+			$.ajax({
+				url : 'won.jsp',
+				data : {
+					won : wonValue
+				},
+				success : function(x) { //x=jsp파일의 실행결과
+					alert('응답받은 내용: ' + x)
+					$('div').html('<font color=red>달러로 환산한 금액은: ' + x + '$</font>')
+				}
+			})
+		})
+		
+		$('#b2').click(function() {
+			dollarValue = $('#dollar').val()
+			
+			$.ajax({
+				url : 'dollar.jsp',
+				data : {
+					dollar : dollarValue
+				},
+				success : function(x) { //x=jsp파일의 실행결과
+					alert('응답받은 내용: ' + x)
+					$('div').html('<font color=red>원화로 환산한 금액은: ' + x + '원</font>')
+				}
+			})
+		})
+		
+		
+
+	})
+</script>
+
+</head>
+<body bgcolor="pink">
+    <h3>비동기통신으로 서버와 통신하기</h3>
+    <br>
+   원화를 달러로 :
+    <input type="text" id='won'>
+    <button style='color: blue; background: yellow' id='b1'>원화를 달러로</button>
+    <hr color="red">
+    달러를 원화로 :
+    <input type="text" id='dollar'>
+    <button style='color: blue; background: fuchsia;' id='b2'>달러를 원화로</button>
+    <hr color="green">
+    <div></div>
+</body>
+</html>
